@@ -15,23 +15,17 @@ export default {
     props: {
         exchangeRequest: null,
     },
-    update() {
-        if (this.exchangeRequest.status === 'active') {
-            this.$router.push('/exchange')
-        }
-    },
     methods: {
         startExchange() {
+            console.log('exchangeRequest accepted', this.exchangeRequest)
             //update the exchange to active
             fb.db.ref(`/exchanges/${this.exchangeRequest.user2.uid}`).update({ status: 'active' })
             //update both to isPlaying = true
             .then(
-                fb.db.ref(`/users/${this.exchangeRequest.user1.uid}`).update({ status: 'playing' }))
+                fb.db.ref(`/users/${this.exchangeRequest.user1.uid}`).update({ status: 'playing', activeExchange: this.exchangeRequest.user2.uid }))
             .then(
-                fb.db.ref(`/users/${this.exchangeRequest.user2.uid}`).update({ status: 'playing' }))
+                fb.db.ref(`/users/${this.exchangeRequest.user2.uid}`).update({ status: 'playing', activeExchange: this.exchangeRequest.user2.uid  }))
              //push the router view
-             console.log('hello')
-            .then(this.$router.push('/exchange'))
         }
     }
 }

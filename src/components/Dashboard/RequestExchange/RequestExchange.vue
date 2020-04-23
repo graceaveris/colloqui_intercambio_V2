@@ -40,11 +40,6 @@ export default {
     props: {
         friends: null,
     },
-    updated() {
-        if (this.exchange.status === 'active') {
-        this.$router.push('/exchange')
-        }
-    },
     computed: {
         ...mapState(['userProfile', 'currentUser', 'friends', 'exchangeRequests']),
     },
@@ -75,6 +70,7 @@ export default {
 
         cancelRequest() {
             //we update the users so they are no longer busy, and available for other exchanges.
+            console.log('cancel request', this.currentUser.uid)
             fb.db.ref(`/users/${this.currentUser.uid}`).update({ status: 'free' })
             .then(
             fb.db.ref(`/users/${this.partnerUID}`).update({ status: 'free' })

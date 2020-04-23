@@ -7,17 +7,18 @@ Vue.use(Vuex)
 // handle page reload (reoading the page is going to empty our store. This resets the data in this instance!
 fb.auth.onAuthStateChanged(user => {
   if (user) {
-    console.log('AUTHSTATECHANGE hello')
+    console.log('usertest', user)
       store.commit('setCurrentUser', user)
       store.dispatch('fetchUserProfile')
       store.dispatch('fetchFriends', user.uid)
       store.dispatch('fetchFriendRequests', user.uid )
       store.dispatch('fetchExchangeRequests', user.uid )
+      store.dispatch('fetchActiveExchange', user.uid)
       // REALTIME //keep an eye on database for changes in your profile and updates
       const dbObjectRef = fb.db.ref().child(`/users/${user.uid}`)
       dbObjectRef.on('value', snap => store.commit('setUserProfile', snap.val()))
       // PRESENCE - online status
-        var amOnline = fb.db.ref(".info/connected");
+      var amOnline = fb.db.ref(".info/connected");
          amOnline.on('value', function(snapshot) {
             if (snapshot.val()) {
            // User is online.
@@ -36,6 +37,7 @@ export const store = new Vuex.Store({
     friendRequests: {},
     friends: {},
     exchangeRequests: {},
+    activeExchange: {},
   },
   
   mutations: {
@@ -52,7 +54,11 @@ export const store = new Vuex.Store({
       state.friends = val
     },
       setExchangeRequests(state, val) {
+        console.log('in setExchangeReq mutation', val)
       state.exchangeRequests = val
+    },
+     setActiveExchange(state, val) {
+      state.activeExchange = val
     }
   },
 
@@ -75,7 +81,7 @@ export const store = new Vuex.Store({
         console.log(err)
       })
     },
- 
+
     fetchFriendRequests({ commit }, data) {
       // REALTIME // get friend requests where the ID beongs to the current user
       let requestsRef = fb.db.ref('requests');
@@ -85,11 +91,31 @@ export const store = new Vuex.Store({
     },
 
     fetchExchangeRequests({ commit }, uid) {
-      let requestsRef = fb.db.ref(`exchanges/${uid}`);
-        requestsRef.on('value', snap => {
-          console.log('fer fired')
+      console.log('inside fetchExchangeRequests')
+      console.log('uid', uid)
+      let exchangeRef = fb.db.ref(`exchanges/${uid}`);
+        exchangeRef.on('value', snap => {
+          console.log('snapval',snap.val())
           commit('setExchangeRequests', snap.val())
         })
+    },
+
+    fetchActiveExchange({ commit }, uid) {
+      let exchangeRef = fb.db.ref('exchanges');
+      exchangeRef.on('value', snap => {
+        //get our data
+        let data = snap.val()
+        let dataKeys = Object.keys(data)
+        
+        dataKeys.forEach( key => {
+          //if the key is the same as the game uid
+          let user1 = data[key].user1.uid
+          let user2 = data[key].user2.uid
+          if ( user1 === uid || user2 === uid) {
+            commit('setActiveExchange', data[key])
+          }
+        })
+      })
     },
 
     fetchFriends({ commit }, uid) {

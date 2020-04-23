@@ -4,11 +4,11 @@
 
     <div class="col1">
         <div>
+            NOT WORKING: EXCHANGE REQ:{{exchangeRequests}}
             <!-- Wil be prompted to return to game if **isPlaying** -->
             <div v-if="userProfile.status === 'playing'">
                 You are in an exchange. <a>return to exchange</a>
             </div>
-
             <!-- if not currently in game -->
             <div v-else>
             <!-- IF *PENDING** CHECKS IF USER HAS BEEN SENT A REQUEST AND RENDERS -->
@@ -46,14 +46,18 @@ import ExchangeRequest from '@/components/Dashboard/ExchangeRequest/ExchangeRequ
 export default {
     components: { AddFriend, FriendRequests, FriendsList, UserProfile, RequestExchange, ExchangeRequest },
     computed: {
-        ...mapState(['userProfile', 'currentUser', 'friendRequests', 'friends', 'exchangeRequests']),
-        isBusy() {
-            if (this.userProfile.isBusy) {
-                return true
-            } else {
-                return false
-            }
+        ...mapState(['userProfile', 'currentUser', 'friendRequests', 'friends', 'exchangeRequests', 'activeExchange']),
+
+        getStatus() {
+        return this.userProfile.status
         }
     },
+    watch: {
+        getStatus(newStatus) {
+            if (newStatus === 'playing') {
+                this.$router.push('/exchange')
+            }
+        }
+    }
 }
 </script>
