@@ -139,6 +139,8 @@ export const store = new Vuex.Store({
               friendObj.name = data[id]['name']
               friendObj.isOnline = data[id].isOnline
               friendObj.email = data[id]['email']
+              friendObj.targetLang = data[id]['targetLang']
+              friendObj.level = data[id]['level']
               if (friendObj.isOnline) {
                 friendList.unshift(friendObj)
               } else {

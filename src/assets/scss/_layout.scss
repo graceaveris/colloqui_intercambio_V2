@@ -1,5 +1,6 @@
 // navigation
 header {
+    padding: 10px;
     position: relative;
     background: $white;
     box-shadow: 0 0 5px 0 rgba($dark, 0.5);
@@ -37,6 +38,10 @@ header {
 
 // login
 #login {
+    section {
+        display: flex;
+
+    }
     background: linear-gradient(to right, $primary 0%, $primary 50%, $white 50%, $white 100%);
 
     @media screen and (max-width: 742px) {
@@ -108,33 +113,47 @@ header {
 
 // dashboard
 #dashboard {
-    section {
-        padding: 2rem;
+
+    .welcome {
+        text-align: left;
+        margin: 5vh 3vh 0vh 3vh;
     }
 
-    .col1 {
-        flex: 0 0 50%;
-        margin: 5vh;
-        background: $white;
-        @media screen and (max-width: 1000px) {
-    		flex: 0 0 50%;
+    .dash-container {
+        width: 100%;
+        display: flex;
+        @media screen and (max-width: 742px) {
+            display: block;
         }
     }
 
-    .col2 {
-        margin: 5vh;
+    .social {
+        margin: 3vh;
         background: $white;
         text-align: left;
+        width: 40%;
+        @media screen and (max-width: 742px) {
+            width: 90%;
+        }
+    }
+
+    .exchange {
+        margin: 3vh;
+        background: $white;
+        width: 60%;
+        @media screen and (max-width: 742px) {
+            width: 90%;
+        }
     }
 
     .success {
-        color: $success;
+        color: $primary !important;
         margin: 1rem;
     }
 
      .message {
         margin: 0.5rem 0 0;
-        color: $error !important;
+        color: $error;
         font-size: .8rem;
     }
 }

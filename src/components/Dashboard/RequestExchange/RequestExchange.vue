@@ -2,27 +2,42 @@
 <template>
 <div class="has-p-1">
 
-
     <!-- RENDER IF THE USER IS NOT BUSY -->
        <div v-if="userProfile.status === 'free'">
             <h4>Set up exchange</h4>
-            <p>Select intercambio partner</p>
+            <p>Invite a friend to start an exchange</p>
 
-            <div v-for="friend in friends" :key="friend.uid">
-                <div v-if="friend.isOnline">
-                    <p>{{ friend.name }}</p>
-                    <button @click="sendRequest(friend)">Send request</button>
+            <div v-for="friend in friends" :key="friend.uid" class="friend-container">
+                <div v-if="friend.isOnline" class="friend">
+                    <div>{{ friend.name }}</div>
+                    <button @click="sendRequest(friend)" class="button button_sml button_request">Send invite</button>
                 </div>
             </div>
         </div>
     <!-- RENDER WHEN TEH USER HAS REQUESTED AN EXCHANGE -->
         <div v-if="userProfile.status === 'pending'">
-            Waiting for {{partnerName}} to accept...
-            <button @click="cancelRequest()">Cancel</button>
+            <h5>Waiting for {{partnerName}} to accept...</h5>
+            <button class="button button_med button_decline" @click="cancelRequest()">Cancel</button>
         </div>
 
 </div>
 </template>
+
+<style lang="scss" scoped>
+.friend-container {
+    display: flex;
+    width: 60%;
+    margin: 30px auto;
+}
+    .friend {
+        align-items: center;
+        display: flex;
+        padding: 10px;
+        button {
+            margin-left: 10px;
+        }
+    }
+</style>
 
 <script>
 import { mapState } from 'vuex'
@@ -50,9 +65,14 @@ export default {
             let user1 = {}
             user1.name = this.userProfile.name
             user1.uid = this.currentUser.uid
+            user1.targetLang = this.userProfile.targetLang
+            user1.level = this.userProfile.level
             let user2 = {}
             user2.name = friend.name
             user2.uid = friend.uid
+            user2.targetLang = friend.targetLang
+            user2.level = friend.level
+
             fb.db.ref(`/exchanges/${friend.uid}`).set({ user1, user2, status: 'pending' }).then(
 
             //set the exchange in the data and listen for changes. If it changes, we update our data object with the latest version of the exchange! When it becomes active the router will send us to the exchange view.

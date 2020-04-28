@@ -1,9 +1,14 @@
   
 <template>
 <div class="has-p-1">
-    <h4>Friend Requests</h4>
-    <div v-for="request in getRequests" :key="request.uid">
-        <FriendRequest :request="request" />
+    <h5>Partner Requests</h5>
+    <div v-if="friendRequests">
+        <div v-for="request in getRequests" :key="request.uid">
+            <FriendRequest :request="request" />
+        </div>
+    </div>
+    <div v-else>
+        <p class="label">No pending requests</p>
     </div>
 </div>
 </template>

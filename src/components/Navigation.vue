@@ -2,17 +2,31 @@
 <template>
     <header>
         <section>
-            <div class="col1">
-                <router-link to="dashboard"><h3>App Name</h3></router-link>
-                <ul class="inline">
-                    <li><router-link to="dashboard">Dashboard</router-link></li>
-                    <li><router-link to="settings">Settings</router-link></li>
-                    <li><a @click="logout">logout</a></li>
-                </ul>
+            <div class="nav">
+                <div class="logo">
+                    <router-link to="dashboard"><h3>Colloqui</h3></router-link>
+                </div>
+                <div class="links">
+                    <ul class="inline">
+                        <li><router-link to="dashboard">Dashboard</router-link></li>
+                        <li><router-link to="settings">Settings</router-link></li>
+                        <li><a @click="logout">logout</a></li>
+                    </ul>
+                </div>
             </div>
         </section>
     </header>
 </template>
+
+<style lang="scss" scoped>
+
+.nav {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+</style>
 
 <script>
     const fb = require('../firebaseConfig.js')

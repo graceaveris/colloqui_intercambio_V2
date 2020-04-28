@@ -1,11 +1,11 @@
   
 <template>
 <div class="has-p-1">
-    <h4>Add Friend</h4>
+    <h5>Add Exchange Partner</h5>
         <form @submit.prevent>
             <label for="friendemail">Find by email</label>
-            <input v-model.trim="findFriendForm.email" type="text" placeholder="yourfriend@email.com" id="friendemail" />
-            <button @click="requestFriend" class="button button_sml">Search</button>
+            <input v-model.trim="findFriendForm.email" type="text" placeholder="yourfriend@email.com" id="friendemail" class="input input_med"/>
+            <button @click="requestFriend" class="button button_med">Search</button>
         </form>
         <transition name="fade">
             <p v-if="showMessage" v-html="this.message" class="message" :class="{success: messageType }"></p>
@@ -86,10 +86,10 @@ export default {
         }).catch( err => this.message = err)
         //show our message with success/fail
         this.showMessage = true
-        this.messageType = false
         this.findFriendForm.email = ''
         setTimeout(() => {
                 this.showMessage = false
+                this.messageType = false
             }, 2000)
      }
     

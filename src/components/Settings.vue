@@ -10,7 +10,7 @@
 
             <form @submit.prevent>
                 <label for="name">Name</label>
-                <input v-model.trim="name" type="text" :placeholder="userProfile.name" id="name" />
+                <input v-model.trim="name" type="text" :placeholder="userProfile.name" id="name" class="input"/>
 
                 <button @click="updateProfile" class="button">Update Profile</button>
             </form>

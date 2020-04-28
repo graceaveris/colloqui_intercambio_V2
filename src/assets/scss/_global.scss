@@ -4,6 +4,7 @@
 // colors
 $primary: #007EA7;
 $secondary: #003459;
+$tertiary: rgb(235, 224, 72);
 $dark: #00171F;
 $error: #ef5777;
 $success: #00A8E8;
@@ -20,6 +21,10 @@ body {
 html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
+}
+
+img {
+	width: 100%;
 }
 
 * {
@@ -48,7 +53,6 @@ h1 {
 
 h2 {
 	font-size: 1.8rem;
-	padding-bottom: 14px;
 }
 
 h3 {
@@ -58,7 +62,7 @@ h3 {
 
 h4 {
 	font-size: 1.4rem;
-	padding-bottom: 10px;
+	padding-bottom: 4px;
 }
 
 h5 {
@@ -68,6 +72,17 @@ h5 {
 
 p {
 	line-height: 1.5;
+}
+
+.icon {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+
+.tinytext {
+	font-size: 8px;
+	font-style: italic;
 }
 
 a {
@@ -84,7 +99,7 @@ a {
 
 // globals
 section {
-	display: flex;
+	// display: flex;
 	max-width: 1200px;
 	margin: 0 auto;
 
@@ -141,10 +156,10 @@ section {
 	outline: 0;
 	color: $white;
 	padding: 0.8rem 1rem;
-	min-width: 150px;
 	font-size: 16px;
 	border-radius: 50px;
 	cursor: pointer;
+	margin: .2rem;
 
 	&:hover {
 		background: lighten($primary, 5%);
@@ -156,10 +171,42 @@ section {
             background: $primary;
         }
 	}
-	&_sml {
-		padding: 0.4rem;
-		min-width: 100px;
+	&_med {
+		padding: 0.3rem 1rem;
+		font-size: 14px;
 	}
+	&_sml {
+		padding: 0.2rem .8rem;
+		font-size: 12px;
+	}
+	&_light {
+		padding: 0.2rem 0.5rem;
+		font-size: 12px;
+	}
+
+	&_accept {
+		color: black;
+		background: $tertiary;
+		&:hover {
+			background: lighten($tertiary, 10%);
+		}
+
+	}
+	&_decline {
+		color: black;
+		background: $light;
+		&:hover {
+			background: lighten($light, 10%);
+		}
+	}
+	&_request {
+		color: white;
+		background: $primary;
+		&:hover {
+			background: lighten($primary, 5%);
+		}
+	}
+
 }
 
 .text-center {
@@ -188,10 +235,10 @@ form {
 		margin-bottom: 0.4rem;
 	}
 
-	input {
+	.input {
 		display: block;
 		width: 100%;
-		margin-bottom: 1rem;
+		margin-bottom: .6rem;
 		font-size: 16px;
 		padding: 10px;
 		outline: 0;
@@ -200,6 +247,10 @@ form {
 
 		&:focus {
 			box-shadow: 0 0 5px 0 rgba($dark, 0.2);
+		}
+		&_med {
+			font-size: 14px;
+			padding: 6px;
 		}
 	}
 
@@ -228,7 +279,7 @@ form {
 }
 
 .has-p-1 {
-	padding: 10px;
+	padding: 16px 10px;
 }
 
 .has-pb-slight {

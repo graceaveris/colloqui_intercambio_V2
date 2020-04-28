@@ -5,7 +5,7 @@ import firebase from 'firebase'
 import Login from '@/components/Login'
 import Dashboard from '@/components/Dashboard/Dashboard'
 import Settings from '@/components/Settings'
-import Exchange from '@/components/Exchange'
+import Exchange from '@/components/Exchange/Exchange'
 
 
 Vue.use(Router)

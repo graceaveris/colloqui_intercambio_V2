@@ -1,13 +1,26 @@
   
 <template>
-<div class="has-p-1">
-    <div>
-       {{request.senderName}}
-       <button @click="acceptFriend">Accept</button>
+<div>
+    <div class="friend-request">
+       <div>{{request.senderName}}</div>
+       <button class="button button_light button_accept" @click="acceptFriend">Accept ✓</button>
     </div>
 </div>
 </template>
 
+<style lang="scss" scoped>
+
+.friend-request {
+    display: flex;
+    align-items: center;
+	padding: 8px 10px;
+    button {
+        margin-left: 10px;
+    }
+}
+
+</style>
+ 
 <script>
 import { mapState } from 'vuex'
 const fb = require('../../../../firebaseConfig.js')
