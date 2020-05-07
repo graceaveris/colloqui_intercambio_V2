@@ -1,13 +1,15 @@
   
 <template>
 <div>
-    <h2>Welcome {{userProfile.name}}</h2>
     <div class="profile-container">
-        <div class="icon">
-            <img v-if="userProfile.targetLang ==='spanish'" src="../../../assets/images/spain.png" />
-            <img v-else src="../../../assets/images/united-kingdom.png" />
+        <div class="dash-image">
+            <img v-if="userProfile.targetLang ==='spanish'" src="../../../assets/images/spanish-head-2.png" />
+            <img v-else src="../../../assets/images/english-head-2.png" />
         </div>
-        <p>You're learning {{userProfile.targetLang}} at a {{userProfile.level}} level</p>
+        <div class="dash-text">
+            <h2>Hey there, {{userProfile.name}}</h2>
+            <p>You're speaking {{userProfile.targetLang}} at a {{userProfile.level}} level</p>
+        </div>
     </div>
 
 </div>
@@ -16,12 +18,21 @@
     .profile-container {
         display: flex;
         margin-top: 15px;
+        justify-items: center;
     }
 
-    .icon {
+    .dash-image {
         padding-right: 10px;
-        width: 38px;
-        height: 38px;
+        width: 13rem;
+        height: 100%;
+        margin-bottom: -20px;
+    }
+
+    .dash-text {
+        display: flex;
+        padding-left: 2rem;
+        flex-direction: column;
+        justify-content: center;
     }
 </style>
 

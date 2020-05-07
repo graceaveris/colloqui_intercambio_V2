@@ -9,7 +9,7 @@
         </p>
     </div>
 </template>
-
+x
 <style lang="scss" scoped> 
     .lang-display{
         padding: 20px;

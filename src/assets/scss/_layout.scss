@@ -127,22 +127,29 @@ header {
         }
     }
 
-    .social {
+    .friends-list {
         margin: 3vh;
         background: $white;
         text-align: left;
-        width: 40%;
+        width: 60%;
         @media screen and (max-width: 742px) {
             width: 90%;
         }
     }
 
-    .exchange {
+    .friend-requests {
         margin: 3vh;
-        background: $white;
-        width: 60%;
+        width: 40%;
         @media screen and (max-width: 742px) {
             width: 90%;
+        }
+        &__requests {
+            background: $white;
+
+        }
+        &__add-friend {
+            background: $white;
+            margin-top: 25px;
         }
     }
 

@@ -91,11 +91,8 @@ export const store = new Vuex.Store({
     },
 
     fetchExchangeRequests({ commit }, uid) {
-      console.log('inside fetchExchangeRequests')
-      console.log('uid', uid)
       let exchangeRef = fb.db.ref(`exchanges/${uid}`);
         exchangeRef.on('value', snap => {
-          console.log('snapval',snap.val())
           commit('setExchangeRequests', snap.val())
         })
     },
@@ -119,6 +116,7 @@ export const store = new Vuex.Store({
     },
 
     fetchFriends({ commit }, uid) {
+
       // REALTIME // get the friends object for the current user
       let userList = fb.db.ref('users');
       userList.on('value', snap => {
@@ -138,6 +136,7 @@ export const store = new Vuex.Store({
               friendObj.uid = id
               friendObj.name = data[id]['name']
               friendObj.isOnline = data[id].isOnline
+              friendObj.status = data[id]['status']
               friendObj.email = data[id]['email']
               friendObj.targetLang = data[id]['targetLang']
               friendObj.level = data[id]['level']

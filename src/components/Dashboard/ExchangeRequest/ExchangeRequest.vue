@@ -22,6 +22,7 @@ export default {
     },
     methods: {
         startExchange() {
+            console.log('test of exchange req', this.exchangeRequest)
             // here we need to fetch the questions for each player
             // based on their level and targetlang
             //need to combine all the varius requests below but for now leave separate as things will change.

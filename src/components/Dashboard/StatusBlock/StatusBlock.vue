@@ -2,63 +2,64 @@
 <template>
 <div class="has-p-1">
 
-    <!-- RENDER IF THE USER IS NOT BUSY -->
-       <div v-if="userProfile.status === 'free'">
-            <h4>Set up exchange</h4>
-            <p>Invite a friend to start an exchange</p>
 
-            <div v-for="friend in friends" :key="friend.uid" class="friend-container">
-                <div v-if="friend.isOnline" class="friend">
-                    <div>{{ friend.name }}</div>
-                    <button @click="sendRequest(friend)" class="button button_sml button_request">Send invite</button>
-                </div>
-            </div>
+    <!-- if the user has an invite -->
+    <div v-if="exchangeRequests">
+        you have an invite
+    </div>
+
+    <!-- if has no friends -->
+        <div v-if="this.friends === false" class="has-p-1">  
+              <h5>welcome to colloqui!</h5>
+              <p>Add your langugae exchange partners as friends to get started.</p>
         </div>
-    <!-- RENDER WHEN TEH USER HAS REQUESTED AN EXCHANGE -->
-        <div v-if="userProfile.status === 'pending'">
-            <h5>Waiting for {{partnerName}} to accept...</h5>
-            <button class="button button_med button_decline" @click="cancelRequest()">Cancel</button>
+
+    <!-- has friends but none are online -->
+        <div v-else-if="this.friends.length > 1 && this.hasFriendsOnline === false" class="has-p-1">
+            <h5>None of your friends are online</h5>
+            <p>You can set up an exchange once one of your friends logs in.</p>
+        </div>
+
+    <!-- RENDER IF THE USER IS NOT BUSY -->
+        <div v-else-if="userProfile.status === 'free' && this.hasFriendsOnline">
+            <p>free for exchange</p>
         </div>
 
 </div>
 </template>
 
 <style lang="scss" scoped>
-.friend-container {
-    display: flex;
-    width: 60%;
-    margin: 30px auto;
-}
-    .friend {
-        align-items: center;
-        display: flex;
-        padding: 10px;
-        button {
-            margin-left: 10px;
-        }
-    }
 </style>
 
 <script>
 import { mapState } from 'vuex'
 const fb = require('../../../firebaseConfig.js')
 export default {
-    name: 'RequestExchange',
-    data() {
-        return {
-            partnerName: null,
-            partnerUID: null,
-            requestUID: null,
-            exchange: null,
-        }
-    },
+    name: 'StatusBlock',
     props: {
         friends: null,
     },
     computed: {
         ...mapState(['userProfile', 'currentUser', 'friends', 'exchangeRequests']),
+
+        hasFriendsOnline() {
+            let status = false
+            this.friends.forEach( friend => {
+                if (friend.isOnline) {
+                    status = true
+                }
+            })
+            return status
+        },
+
+        getStatus() {
+        return this.userProfile.status
+        }
     },
     methods: {
+        returnToExchange() {
+            this.$router.push('/exchange')
+        },
         sendRequest(friend) {
             //set data required in the request for each user
             //in future here we will add all the details for the 
