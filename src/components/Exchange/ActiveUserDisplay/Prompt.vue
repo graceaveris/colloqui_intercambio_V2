@@ -2,7 +2,7 @@
 <template>
     <div class="prompt">
         <h4>{{prompt.targetLang}}</h4>
-        <p>{{prompt.translation}}</p>
+        <p class="translation">{{prompt.translation}}</p>
     </div>
 </template>
 

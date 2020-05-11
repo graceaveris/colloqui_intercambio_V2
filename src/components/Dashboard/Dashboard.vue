@@ -12,7 +12,7 @@
         </div>
 
         <div class="friend-requests">
-            <FriendRequests :friendRequests="this.friendRequests" class="has-p-1 friend-requests__requests"/>
+            <FriendRequests :friendRequests="this.friendRequests" :pendingFriendRequests="this.pendingFriendRequests" class="has-p-1 friend-requests__requests"/>
             <AddFriend :userProfile="this.userProfile" :currentUser="this.currentUser" :friendRequests="this.friendRequests" class="has-p-1 friend-requests__add-friend"/>
         </div>
     </div>
@@ -30,7 +30,7 @@ import FriendRequests from '@/components/Dashboard/FriendRequests/FriendRequests
 export default {
     components: { AddFriend, FriendRequests, FriendsList, UserProfile },
     computed: {
-        ...mapState(['userProfile', 'currentUser', 'friendRequests', 'friends', 'exchangeRequests', 'activeExchange']),
+        ...mapState(['userProfile', 'currentUser', 'friendRequests', 'friends', 'exchangeRequests', 'activeExchange', 'pendingFriendRequests']),
 
 
         getStatus() {

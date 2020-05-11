@@ -2,7 +2,7 @@
 <template>
     <div class="word">
         <h4>{{word.targetLang}}</h4>
-        <p>{{word.translation}}</p>
+        <p class="translation">{{word.translation}}</p>
     </div>
 </template>
 

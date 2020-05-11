@@ -1,26 +1,52 @@
   
 <template>
     <div>
-        <div class="exchange-nav">
-            <div class="user user_1">
-                <div class="icon">
-                     <img v-if="activeExchange.user1.targetLang ==='spanish'" src="../../../assets/images/spain.png" />
-                    <img v-else src="../../../assets/images/united-kingdom.png" />
+        <div>
+            <div class="users-container">
+            <!-- CURRENT PLAYER IN TOP POSITION -->
+                <div v-if="currentUser.uid === activeExchange.user1.uid" class="user">
+                    <div class="icon">
+                        <img v-if="activeExchange.user1.targetLang ==='spanish'" src="../../../assets/images/spain.png" />
+                        <img v-else src="../../../assets/images/united-kingdom.png" />
+                    </div>
+                    <div>
+                        <div class="user--name">{{activeExchange.user1.name}} <span>( you )</span></div>
+                        <div class="user--level">{{activeExchange.user1.level}} {{activeExchange.user1.targetLang}}</div>
+                    </div>
                 </div>
-                <div>
-                    <h4>{{activeExchange.user1.name}}</h4>
-                    <p>{{activeExchange.user1.level}} {{activeExchange.user1.targetLang}}</p>
-                </div>
-            </div>
 
-            <div class="user user_2">
-                <div>
-                    <h4>{{activeExchange.user2.name}}</h4>
-                    <p>{{activeExchange.user2.level}} {{activeExchange.user2.targetLang}}</p>
+                <div v-else class="user">
+                    <div class="icon">
+                        <img v-if="activeExchange.user2.targetLang ==='spanish'" src="../../../assets/images/spain.png" />
+                        <img v-else src="../../../assets/images/united-kingdom.png" />
+                    </div>
+                    <div>
+                        <div class="user--name">{{activeExchange.user2.name}} <span>(you)</span></div>
+                        <div class="user--level">{{activeExchange.user2.level}} {{activeExchange.user2.targetLang}}</div>
+                    </div>
                 </div>
-                <div class="icon">
-                     <img v-if="activeExchange.user2.targetLang ==='spanish'" src="../../../assets/images/spain.png" />
-                    <img v-else src="../../../assets/images/united-kingdom.png" />
+
+            <!-- SECONDARY PLAYER-->
+                <div v-if="currentUser.uid !== activeExchange.user1.uid" class="user">
+                    <div class="icon">
+                        <img v-if="activeExchange.user1.targetLang ==='spanish'" src="../../../assets/images/spain.png" />
+                        <img v-else src="../../../assets/images/united-kingdom.png" />
+                    </div>
+                    <div>
+                        <div class="user--name">{{activeExchange.user1.name}}</div>
+                        <div class="user--level">{{activeExchange.user1.level}} {{activeExchange.user1.targetLang}}</div>
+                     </div>
+                </div>
+
+                <div v-else class="user">
+                    <div class="icon">
+                        <img v-if="activeExchange.user2.targetLang ==='spanish'" src="../../../assets/images/spain.png" />
+                        <img v-else src="../../../assets/images/united-kingdom.png" />
+                    </div>
+                    <div>
+                        <div class="user--name">{{activeExchange.user2.name}}</div>
+                        <div class="user--level">{{activeExchange.user2.level}} {{activeExchange.user2.targetLang}}</div>
+                     </div>
                 </div>
             </div>
         </div>
@@ -32,32 +58,35 @@
     h4 {
         padding-bottom: 0px;
     }
-    .exchange-nav {
+
+    .users-container {
         display: flex;
-        width: 100%;
-        background-color: white;
+        flex-direction: column;
     }
 
     .user {
         display: flex;
-        padding: 15px;
-        width: 50%;
+        text-align: left;
+        align-items: center;
+
+        span {
+            padding-left: 5px;
+        }
 
         .icon {
             margin: 10px;
-            width: 2.8rem;
+            width: 2.1rem;
         }
 
-        &_1 {
-            justify-content: flex-start;
-            text-align: left;
-
+        &--name {
+            font-size: .8rem;
+            font-weight: 600;
+            padding-bottom: 3px;
+        }
+        &--level {
+            font-size: .8rem;
         }
 
-        &_2 {
-            justify-content: flex-end;
-            text-align: right;
-        }
     }
 </style>
 
@@ -66,6 +95,7 @@
         name: 'ExchangeNav', 
         props: {
             activeExchange: null,
+            currentUser: null,
         }
 
     }

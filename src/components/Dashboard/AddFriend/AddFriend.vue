@@ -1,8 +1,8 @@
   
 <template>
 <div class="has-p-1">
-    <h5>Add Exchange Partner</h5>
-        <form @submit.prevent>
+    <h4 class="header">Add Exchange Partner</h4>
+        <form @submit.prevent class="has-p-1">
             <label for="friendemail">Find by email</label>
             <input v-model.trim="findFriendForm.email" type="text" placeholder="yourfriend@email.com" id="friendemail" class="input input_med"/>
             <button @click="requestFriend" class="button button_med">Search</button>
@@ -13,6 +13,16 @@
 
     </div>
 </template>
+
+<style lang="scss" scoped>
+    .subheader {
+        padding: 20px 15px 15px 10px;
+        font-weight: 600;
+    }
+    .header {
+        padding: 10px;
+    }
+</style>
 
 <script>
 const fb = require('../../../firebaseConfig.js')

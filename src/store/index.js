@@ -11,6 +11,7 @@ fb.auth.onAuthStateChanged(user => {
       store.commit('setCurrentUser', user)
       store.dispatch('fetchUserProfile')
       store.dispatch('fetchFriends', user.uid)
+      store.dispatch('fetchPendingFriendRequests', user.uid )
       store.dispatch('fetchFriendRequests', user.uid )
       store.dispatch('fetchExchangeRequests', user.uid )
       store.dispatch('fetchActiveExchange', user.uid)
@@ -35,6 +36,7 @@ export const store = new Vuex.Store({
     currentUser: null,
     userProfile: {},
     friendRequests: {},
+    pendingFriendRequests: {},
     friends: {},
     exchangeRequests: {},
     activeExchange: {},
@@ -49,6 +51,9 @@ export const store = new Vuex.Store({
     },
       setFriendRequests(state, val) {
       state.friendRequests = val
+    },
+      setPendingFriendRequests(state, val) {
+      state.pendingFriendRequests = val
     },
       setFriends(state, val) {
       state.friends = val
@@ -87,6 +92,15 @@ export const store = new Vuex.Store({
       let requestsRef = fb.db.ref('requests');
         requestsRef.orderByChild('recieverUID').equalTo(data).on('value', snap => {
           commit('setFriendRequests', snap.val())
+        })
+    },
+
+    fetchPendingFriendRequests({ commit }, data) {
+      // REALTIME // get requests you have sent!
+      let requestsRef = fb.db.ref('requests');
+        requestsRef.orderByChild('senderUID').equalTo(data).on('value', snap => {
+          console.log('pending test', snap.val())
+          commit('setPendingFriendRequests', snap.val())
         })
     },
 

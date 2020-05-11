@@ -1,22 +1,39 @@
   
 <template>
-    <div>
-    <!-- if there is active exchange, render exchangeZone component -->
+    <div id="exchange">
+    <!-- IF ACTIVE EXCHANGE -->
       <div v-if="userProfile.status === 'playing'">
-        <ExchangeNav :activeExchange="activeExchange"/>
-        <LangDisplay :currentLang="this.activeExchange[this.activeExchange.activeUser]['targetLang']"/>
-        <div v-if="isClientsTurn" >
-            <ActiveUserDisplay :currentTalkPoint="getCurrentTalkpoint"/>
-        </div>
-        <div v-else >
-            <PassiveUserDisplay :currentTalkPoint="getCurrentTalkpoint"/>
+
+        <!-- NAV and TIMER-->
+        <div class="exchange-nav">
+            <ExchangeNav :activeExchange="activeExchange" :currentUser="this.currentUser"/>
+            <ExchangeTimer />
         </div>
 
-        <button @click="terminateExchange" class="button button_large button_decline">Cancel Exchange</button>
-        <button @click="changeTurn" class="button button_large button_decline">Next</button>
+        <!-- VIEWS FOR TOPICS -->
+        <div class="exchange-view">
+            <LangDisplay :currentLang="this.activeExchange[this.activeExchange.activeUser]['targetLang']"/>
+
+            <!-- VIEW RENDER -->
+            <div v-if="isClientsTurn" >
+                <ActiveUserDisplay :currentTalkPoint="getCurrentTalkpoint"/>
+            </div>
+            <div v-else >
+                <PassiveUserDisplay :currentTalkPoint="getCurrentTalkpoint"/>
+            </div>
+        </div>
+
+        <!-- CONTROLS -->
+            <div class="controls">
+                <div class="buttons">
+                    <button class="button_cancel" @click="terminateExchange">Cancel Exchange</button>
+                    <button @click="changeTurn" class="button button_large button_decline">skip turn</button>
+                </div>
+            </div>
       </div>
 
-     <!-- NO GAME - EXCHANGE -->
+
+     <!-- NO GAME -->
      <div v-else>
          <h5 class="has-p-1">
              Invite a friend via your dashboard to start an exchange
@@ -28,6 +45,7 @@
 
 <script>
 import ExchangeNav from '@/components/Exchange/ExchangeNav/ExchangeNav'
+import ExchangeTimer from '@/components/Exchange/ExchangeTimer/ExchangeTimer'
 import ActiveUserDisplay from '@/components/Exchange/ActiveUserDisplay/ActiveUserDisplay'
 import PassiveUserDisplay from '@/components/Exchange/PassiveUserDisplay/PassiveUserDisplay'
 import LangDisplay from '@/components/Exchange/LangDisplay/LangDisplay'
@@ -35,7 +53,7 @@ const fb = require('../.../../../firebaseConfig.js')
 import { mapState } from 'vuex'
     export default {
         name: 'Exchange', 
-        components: { ExchangeNav, PassiveUserDisplay, ActiveUserDisplay, LangDisplay },
+        components: { ExchangeNav, PassiveUserDisplay, ActiveUserDisplay, LangDisplay, ExchangeTimer },
         data() {
             return {
                 toggleExchange: this.activeExchange.status,

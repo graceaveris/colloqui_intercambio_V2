@@ -2,8 +2,8 @@
 <template>
 <div class="has-p-1">
         <h5>{{exchangeRequest.user1.name}} wants to start an exchange!</h5>
-        <button class="button button_med button_accept" @click="startExchange">Accept</button>
-        <button class="button button_med button_decline" @click="declineExchange">X</button>
+        <button class="button button_med button_accept" @click="startExchange">OK lets go!</button>
+        <button class="button button_med button_decline" @click="declineExchange">Decline</button>
 </div>
 </template>
 

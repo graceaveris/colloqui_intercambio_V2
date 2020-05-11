@@ -183,6 +183,7 @@ label {
                     }).then(() => {
                         this.$store.dispatch('fetchUserProfile')
                         this.$store.dispatch('fetchFriendRequests', credential.user.uid)
+                        this.$store.dispatch('fetchPendingFriendRequests', credential.user.uid)
                         this.performingRequest = false
                         this.$router.push('/dashboard')
                     }).catch(err => {

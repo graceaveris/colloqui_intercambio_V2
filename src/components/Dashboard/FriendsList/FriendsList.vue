@@ -40,8 +40,9 @@
             <button @click="returnToExchange" class="button button_med button_accept" >return to exchange</button>
         </div>
     <!-- RENDER WHEN TEH USER HAS REQUESTED AN EXCHANGE -->
-        <div v-else-if="this.exchange && this.userProfile.status === 'pending'">
-            <h5>Waiting for {{partnerName}} to accept...</h5>
+        <div v-else-if="this.exchange && this.userProfile.status === 'pending'" class="has-p-1">
+            <p>Exchange invite sent...</p>
+            <h5>Waiting for {{partnerName}} to accept</h5>
             <button class="button button_med button_decline" @click="cancelRequest()">Cancel</button>
         </div>
     <!-- IF THE USER HAS AN EXCHANGE REQUEST-->

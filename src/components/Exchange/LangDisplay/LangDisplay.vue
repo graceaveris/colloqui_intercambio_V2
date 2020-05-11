@@ -1,18 +1,44 @@
   
 <template>
     <div class="lang-display">
-        <h2>
-        {{getPhrase}}
-        </h2>
-        <p>
-        {{getTranslation}}
-        </p>
+        <div class="icon">
+            <img v-if="this.currentLang === 'spanish'" src="../../../assets/images/spain.png"/>
+            <img v-else src="../../../assets/images/united-kingdom.png"/>
+        </div>
+        <div class="text">
+            <h2>{{getPhrase}}</h2>
+            <p class="translation">{{getTranslation}}</p>
+        </div>
     </div>
 </template>
-x
+
 <style lang="scss" scoped> 
     .lang-display{
-        padding: 20px;
+        padding: 30px 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .text {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .translation {
+        font-size: .8rem;
+        font-style: italic;
+        font-weight: 600;
+    }
+
+    .icon {
+        margin-left: 2rem;
+        height: 6rem;
+        width: 6rem;
+    }
+
+    img {
+        height: 6rem;
+        width: 6rem;
     }
 </style>
 
@@ -41,7 +67,7 @@ x
                 } else {
                     return this.spanishPhraseTranslation
                 }
-            }
+            },
         },
         props: {
             currentLang: null,
