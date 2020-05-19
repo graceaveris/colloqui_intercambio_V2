@@ -1,0 +1,178 @@
+
+{ "talkPoints" : {
+     "english" : {
+
+       "beginner" : [
+
+            {   "id": "eb-20q-1",
+                "activeUser": {
+                    "mainContent": {
+                        "targetLang": "Ask your partner questions to find out what vegetable you are - before time runs out!",
+                        "translation": "Haga preguntas a su compañero para saber qué vegetales son, ¡antes de que se agote el tiempo!"
+                    },
+                    "prompts": [ 
+                        { "targetLang": "Am i...?", "translation": "¿Soy...?"},
+                        { "targetLang": "Am i the color...?", "translation": "¿Soy el color...?"} ],
+                    "vocab": [
+                        { "targetLang": "delicious", "translation": "delicioso"},
+                        { "targetLang": "discusting", "translation": "discutiendo"},
+                        { "targetLang": "big", "translation": "grande"},
+                        { "targetLang": "small", "translation": "pequeno"},
+                        { "targetLang": "sweet", "translation": "dulce"},
+                        { "targetLang": "red, green, orange", "translation": "rojo, verde, naranja"}
+                    ]
+                },
+
+                "passiveUser": {
+                    "mainContent": {
+                        "targetLang": "Your partner is a... Carrot! See if they can guess what they are within the time frame, by asking you questions in Spanish",
+                        "translation": "¡Su pareja es una ... zanahoria! Vea si puede adivinar cuáles son dentro del plazo, al hacerle preguntas en ingles"
+                    }
+                } 
+            },
+
+            {   "id": "eb-20q-2",
+                "activeUser": {
+                    "mainContent": {
+                        "targetLang": "Which animal are you? Ask your partner questions to find out... before the timer runs out",
+                        "translation": "¿Qué animal eres? Haz preguntas a tu pareja para averiguar ... antes de que se acabe el tiempo"
+                    },
+                    "prompts": [ 
+                        { "targetLang": "Do I live in...?", "translation": "¿Vivo en...?"},
+                        { "targetLang": "Do I like...?", "translation": "¿Me gusta...?"} ],
+                    "vocab": [
+                        { "targetLang": "dangerous", "translation": "peligroso"},
+                        { "targetLang": "friendy", "translation": "simpático"},
+                        { "targetLang": "shy", "translation": "tímido"},
+                        { "targetLang": "endangered", "translation": "en peligro de extinción"},
+                        { "targetLang": "sneaky", "translation": "furtivo"},
+                        { "targetLang": "small, medium, large", "translation": "pequeno, medio, grande"}
+                    ]
+                },
+
+                "passiveUser": {
+                    "mainContent": {
+                        "targetLang": "Your partner is a... Carrot! See if they can guess what they are within the time frame, by asking you questions in English",
+                        "translation": "¡Tu pareja es un mono! Te harán preguntas en ingles para descubrir la verdad."
+                    }
+                } 
+            },
+
+            {   "id": "eb-20q-3",
+                "activeUser": {
+                    "mainContent": {
+                        "targetLang": "Where in the world are you? To find out, ask your partner questions in English before the timer runs out...",
+                        "translation": "¿En qué parte del mundo estás? Para averiguarlo, hazle preguntas a tu compañero en ingles antes de que se acabe el tiempo ..."
+                    },
+                    "prompts": [ 
+                        { "targetLang": "Am I somewhere...?", "translation": "¿Estoy en un lugar...?"},
+                        { "targetLang": "Do the people here speak...?", "translation": "¿La gente de aquí habla ..."} ],
+                    "vocab": [
+                        { "targetLang": "cold", "translation": "frio"},
+                        { "targetLang": "calor", "translation": "hot"},
+                        { "targetLang": "country", "translation": "pais"},
+                        { "targetLang": "island", "translation": "isla"},
+                        { "targetLang": "mountains", "translation": "montanas"},
+                        { "targetLang": "French, German, Portugese", "translation": "francés, alemana, portuguesa"}
+                    ]
+                },
+
+                "passiveUser": {
+                    "mainContent": {
+                        "targetLang": "Your partner is in Brazil! Can tehy guess where they are by asking questions in English?",
+                        "translation": "¡Tu pareja está en Brasil! ¿Pueden adivinar dónde están haciendo preguntas en inglés?."
+                    }
+                } 
+            }
+
+        ]
+    },
+    "spanish" : {
+
+        "beginner" : [
+ 
+             {   "id": "sb-20q-1",
+                 "activeUser": {
+                     "mainContent": {
+                         "targetLang": "Eres un mueble! Haz preguntas a tu compañero en español y adivina cuál eres.",
+                         "translation": "You are a piece of furnture! Ask your partner questions in spanish and guess which one you are."
+                     },
+                     "prompts": [ 
+                         { "targetLang": "Me usas para...?", "translation": "Do you use me for..."},
+                         { "targetLang": "¿Estoy ubicado en el ...?", "translation": "Am I located in...?"} ],
+                     "vocab": [
+                         { "targetLang": "salon", "translation": "living room"},
+                         { "targetLang": "dormitorio", "translation": "bedroom"},
+                         { "targetLang": "cocina", "translation": "kitchen"},
+                         { "targetLang": "madera", "translation": "pequeno"},
+                         { "targetLang": "metal", "translation": "dulce"},
+                         { "targetLang": "madera, ceramico, plastico", "translation": "wood, ceramic, plastic"}
+                     ]
+                 },
+ 
+                 "passiveUser": {
+                     "mainContent": {
+                         "targetLang": "Tu pareja es un baño! ¿Pueden adivinar qué mueble son?",
+                         "translation": "Your partner is a toilet! Can they guess which piece of furniture they are?"
+                     }
+                 } 
+             },
+ 
+             {   "id": "sb-20q-2",
+                 "activeUser": {
+                     "mainContent": {
+                         "targetLang": "¡A qué te dedicas! Haga preguntas a su compañero en español y adivine.",
+                         "translation": "What is your profession! Ask your partner questions in Spanish and take a guess."
+                     },
+                     "prompts": [ 
+                         { "targetLang": "Trabajo con...?", "translation": "Do I work with...?"},
+                         { "targetLang": "Me pongo...?", "translation": "¿Do I wear...?"} ],
+                     "vocab": [
+                         { "targetLang": "uniforme", "translation": "uniform"},
+                         { "targetLang": "ropa casual", "translation": "casual clothes"},
+                         { "targetLang": "officina", "translation": "office"},
+                         { "targetLang": "hospital", "translation": "hospital"},
+                         { "targetLang": "computadora", "translation": "computer"},
+                         { "targetLang": "camisa, corbata", "translation": "shirt, tie"}
+                     ]
+                 },
+ 
+                 "passiveUser": {
+                     "mainContent": {
+                         "targetLang": "Tu pareja es médico. veamos si pueden adivinar su trabajo haciendo preguntas en español.",
+                         "translation": "your partner is a doctor. lets see if they can guess their job by asking questions in spanish.."
+                     }
+                 } 
+             },
+ 
+             {   "id": "sb-20q-3",
+                 "activeUser": {
+                     "mainContent": {
+                         "targetLang": "¿Qué deporte juegas hoy? Haga preguntas a su pareja y adivine.",
+                         "translation": "What sport are you playing today? Ask your partner questions and take a guess."
+                     },
+                     "prompts": [ 
+                         { "targetLang": "Usare un..?", "translation": "¿Will I use a ...?"},
+                         { "targetLang": "Tendre que...?", "translation": "Will I have to  ..."} ],
+                     "vocab": [
+                         { "targetLang": "correr", "translation": "run"},
+                         { "targetLang": "jump", "translation": "saltar"},
+                         { "targetLang": "campo", "translation": "field"},
+                         { "targetLang": "equipo", "translation": "team"},
+                         { "targetLang": "reglas", "translation": "rules"},
+                         { "targetLang": "pelota, raqueta, canasta", "translation": "ball, racket, basket"}
+                     ]
+                 },
+ 
+                 "passiveUser": {
+                     "mainContent": {
+                         "targetLang": "Tu compañero va a jugar baloncesto. ¿Pueden adivinar qué deporte jugarán haciendo preguntas en español?",
+                         "translation": "You partner is going to play basketball. Can they guess which sport they will play by asking questions in Spanish."
+                     }
+                 } 
+             }
+ 
+         ]
+     }
+  }
+}
