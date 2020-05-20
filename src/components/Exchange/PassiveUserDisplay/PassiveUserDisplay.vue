@@ -7,14 +7,14 @@
         </div>
 
         <div class="main-content">
-            <h1>Your partner will guess the <span>{{currentTalkPoint.activeUser.mainContent.targetLang}}</span></h1>
+            <h1>Your partner will guess the <span>{{currentTalkPoint.activeUser.mainContent.targetLang}}</span> pictured below</h1>
             <h5>By asking questions in English</h5>
             <div class="translation">Tu pareja adivinará la {{currentTalkPoint.activeUser.mainContent.translation}} haciendo preguntas en inglés</div>
         </div>
 
         <div class="secondary-content">
             <div class="image">
-                <img src="https://i.pinimg.com/564x/26/00/72/260072123d97bd2ea2e008636128c863.jpg" />
+                <img :src="currentTalkPoint.imageUrl" />
             </div>
 
             <div class="text">
@@ -39,8 +39,7 @@
         line-height: 1.7;
 
         span {
-            font-size: 3.5rem;
-            margin: 10px;
+            text-decoration: underline;
         }
     }
     .secondary-content {
@@ -63,8 +62,9 @@
 <script>
     export default {
         name: 'PassiveUserDisplay', 
+
         props: {
             currentTalkPoint: null,
-        }
+        },
     }
 </script>

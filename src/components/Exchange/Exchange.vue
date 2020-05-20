@@ -83,7 +83,9 @@ import { mapState } from 'vuex'
             },
             //get current talkpoint based on 
             getCurrentTalkpoint() {
-                return this.activeExchange[this.activeExchange.activeUser]['talkPoints'][this.getTurnRound]
+                let currentTalkPoint = this.activeExchange[this.activeExchange.activeUser]['talkPoints'][this.getTurnRound]
+                currentTalkPoint.imageUrl = `https://firebasestorage.googleapis.com/v0/b/vue-boiler-realtime.appspot.com/o/${currentTalkPoint.id}.jpg?alt=media`
+                return currentTalkPoint
             }
         },
 

@@ -11,12 +11,6 @@
 const fb = require('../../../firebaseConfig.js')
 export default {
     name: 'ExchangeRequest',
-    data() {
-        return {
-            user1data: null,
-            user2data: null,
-        }
-    },
     props: {
         exchangeRequest: null,
     },

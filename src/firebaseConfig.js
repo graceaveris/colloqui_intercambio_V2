@@ -18,9 +18,11 @@ const auth = firebase.auth()
 console.log('inside config - auth:', auth)
 console.log('inside config db:', db)
 const currentUser = auth.currentUser
+const storage = firebase.storage()
 
 export {
     db,
     auth,
     currentUser,
+    storage,
 }

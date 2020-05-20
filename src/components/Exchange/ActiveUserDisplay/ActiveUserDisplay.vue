@@ -8,8 +8,9 @@
         </div>
 
         <div class="main-content">
-            <h1>guess what <span>{{currentTalkPoint.activeUser.mainContent.targetLang}}</span> your partner is looking at</h1>
-            <div class="translation">Adivina qué {{currentTalkPoint.activeUser.mainContent.translation}} está mirando tu pareja</div>
+            <h1>Category:  <span> {{currentTalkPoint.activeUser.mainContent.targetLang}}</span></h1>
+            <h3>Find out what {{currentTalkPoint.activeUser.mainContent.targetLang}} your partner can see on their screen by asking questions in your target langugage</h3>
+            <div class="translation">Adivina qué {{currentTalkPoint.activeUser.mainContent.translation}} puede ver su compañero en su pantalla haciendo preguntas en su idioma de destino.</div>
         </div>
 
         <div class="show-helpers" @click="toggleHelpers">
@@ -81,8 +82,7 @@ import Word from '@/components/Exchange/ActiveUserDisplay/Word'
         line-height: 1.7;
 
         span {
-            font-size: 3.5rem;
-            margin: 10px;
+            text-decoration: underline;
         }
     }
     .show-helpers {
