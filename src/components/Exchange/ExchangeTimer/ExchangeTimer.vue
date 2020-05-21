@@ -2,8 +2,8 @@
 <template>
     <div>
         <div>
-            <div class="clock">02:19</div>
-            <div class="time-remaining">Time remaining</div>
+            <div class="clock">{{counter}}</div>
+            <div class="time-remaining">{{isPaused}}</div>
         </div>
     </div>
 </template>
@@ -23,7 +23,8 @@
     export default {
         name: 'ExchangeTimer', 
         props: {
-        }
-
+            counter: null,
+            isPaused: null,
+        },
     }
 </script>

@@ -6,8 +6,8 @@
 
         <!-- NAV and TIMER-->
         <div class="exchange-nav">
-            <ExchangeNav :activeExchange="activeExchange" :currentUser="this.currentUser"/>
-            <ExchangeTimer />
+            <ExchangeNav :activeExchange="this.activeExchange" :currentUser="this.currentUser"/>
+            <ExchangeTimer :counter="activeExchange.counter" :isPaused="activeExchange.isPaused"/>
         </div>
 
         <!-- VIEWS FOR TOPICS -->
@@ -32,7 +32,6 @@
             </div>
       </div>
 
-
      <!-- NO GAME -->
      <div v-else>
          <h5 class="has-p-1">
@@ -41,7 +40,6 @@
      </div>
     </div>
 </template>
-
 
 <script>
 import ExchangeNav from '@/components/Exchange/ExchangeNav/ExchangeNav'
@@ -57,6 +55,14 @@ import { mapState } from 'vuex'
         data() {
             return {
                 toggleExchange: this.activeExchange.status,
+                inter: null,
+            }
+        },
+        created() {
+            //this handles the very first mount  of the timer at 180 seconds.
+            //user1's client controls the timer countdown.
+            if (( this.activeExchange.user1.uid === this.currentUser.uid ) && (this.activeExchange.counter === 180 )) {
+             this.countDown()
             }
         },
          computed: {
@@ -91,6 +97,9 @@ import { mapState } from 'vuex'
 
         methods: {
             terminateExchange() {
+                clearInterval(this.inter)
+                this.inter = null
+
                 //save before we update
                 let exchangeToDelete = this.userProfile.activeExchange
                 //set profiles to free
@@ -109,6 +118,36 @@ import { mapState } from 'vuex'
                     newActiveUser = "user2" 
                 }
                 fb.db.ref(`/exchanges/${this.userProfile.activeExchange}`).update({ turnCount: newTurnCount, activeUser: newActiveUser })
+            },
+
+            //methods to handle the timer
+            //USER1 CLIENT ONLY!!!
+            minusFive() {
+                    let newCount = this.activeExchange.counter - 5
+                    fb.db.ref(`/exchanges/${this.userProfile.activeExchange}`).update({ counter: newCount })
+            },
+
+            countDown() {
+                this.inter = setInterval(() => {
+
+                    //here we check if the user is in an active exchange - if so the interval can continue 
+                    if (this.userProfile.activeExchange) { //boolean value
+                        //check that the counter isnt finished and that the game is not paused (will need to break this into two options)
+                        if (this.activeExchange.counter > 0 && this.activeExchange.isPaused === false ) {
+                            this.minusFive();
+                        } else {
+                            clearInterval(this.inter)
+                            this.inter = null
+                        }
+
+                    //if use is not in an active exchange - we break the interval
+                    } else {
+                        console.log('INTERVAL CLEARED AS OTHER USER HAS CANCELLED THE GAME')
+                        clearInterval(this.inter)
+                        this.inter = null
+                    }
+                    
+                }, 5000)
             }
         }
     }

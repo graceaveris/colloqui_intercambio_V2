@@ -124,7 +124,7 @@ export default {
             user2.targetLang = friend.targetLang
             user2.level = friend.level
 
-            fb.db.ref(`/exchanges/${friend.uid}`).set({ user1, user2, status: 'pending' }).then(
+            fb.db.ref(`/exchanges/${friend.uid}`).set({ user1, user2, status: 'pending', counter: 180, isPaused: false }).then(
 
             //set the exchange in the data and listen for changes. If it changes, we update our data object with the latest version of the exchange! When it becomes active the router will send us to the exchange view.
             fb.db.ref(`/exchanges/${friend.uid}`).on('value', snap => this.exchange = snap.val()))
