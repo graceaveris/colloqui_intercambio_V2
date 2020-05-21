@@ -2,7 +2,10 @@
 <template>
     <div id="exchange">
     <!-- IF ACTIVE EXCHANGE -->
+
       <div v-if="userProfile.status === 'playing'">
+          <h1>TEST{{partnerOnline}}</h1>
+
 
         <!-- NAV and TIMER-->
         <div class="exchange-nav">
@@ -65,8 +68,16 @@ import { mapState } from 'vuex'
              this.countDown()
             }
         },
-         computed: {
-            ...mapState(['userProfile', 'currentUser', 'activeExchange', 'LanguageDisplay']),
+        watch: {
+                partnerOnline(newValue) {
+                    if (newValue === false) {
+                     alert(`Your partner has gone offline - exchange over`);
+                     this.terminateExchange()
+                    }
+                }
+        },
+        computed: {
+            ...mapState(['userProfile', 'currentUser', 'activeExchange', 'LanguageDisplay', 'friends']),
             //get the player indicator for the client "user1" or "user2"
             getPlayerNum() {
                 if (this.activeExchange.user1.uid === this.currentUser.uid) {
@@ -92,6 +103,20 @@ import { mapState } from 'vuex'
                 let currentTalkPoint = this.activeExchange[this.activeExchange.activeUser]['talkPoints'][this.getTurnRound]
                 currentTalkPoint.imageUrl = `https://firebasestorage.googleapis.com/v0/b/vue-boiler-realtime.appspot.com/o/${currentTalkPoint.id}.jpg?alt=media`
                 return currentTalkPoint
+            },
+
+            //THIS VALUE IS WATCHED
+            //we watch this value and trigger game termination if partner is offline for more than 20 seconds
+            partnerOnline() {
+                if (this.activeExchange.user1.uid === this.currentUser.uid) {
+                    //you are user1
+                    let partner = this.friends.filter( friend => friend.uid === this.activeExchange.user2.uid)
+                    return partner[0].isOnline
+                } else {
+                    //you are user2
+                    let partner = this.friends.filter( friend => friend.uid === this.activeExchange.user1.uid)
+                    return partner[0].isOnline
+                }
             }
         },
 
