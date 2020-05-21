@@ -68,6 +68,10 @@ import { mapState } from 'vuex'
              this.countDown()
             }
         },
+        beforeDestroy() {
+            //manages edge case where the user clicks back or ends up on ther page via url.
+            this.terminateExchange()
+        },
         watch: {
                 partnerOnline(newValue) {
                     if (newValue === false) {
