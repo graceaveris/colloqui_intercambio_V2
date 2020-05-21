@@ -8,8 +8,8 @@
                 </div>
                 <div class="links">
                     <ul class="inline">
-                        <li><router-link to="dashboard">Dashboard</router-link></li>
-                        <li><router-link to="settings">Settings</router-link></li>
+                        <li v-if="!this.userProfile.activeExchange"><router-link to="dashboard">Dashboard</router-link></li>
+                        <li v-if="!this.userProfile.activeExchange"><router-link to="settings">Settings</router-link></li>
                         <li><a @click="logout">logout</a></li>
                     </ul>
                 </div>
@@ -30,7 +30,12 @@
 
 <script>
     const fb = require('../firebaseConfig.js')
+    import { mapState } from 'vuex'
     export default {
+        computed: {
+            ...mapState(['userProfile']),
+
+        },
         methods: {
             logout() {
                 fb.auth.signOut().then(() => {
