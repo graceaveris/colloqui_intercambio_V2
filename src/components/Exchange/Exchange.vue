@@ -120,6 +120,7 @@ import { mapState } from 'vuex'
                     //you are user2
                     let partner = this.friends.filter( friend => friend.uid === this.activeExchange.user1.uid)
                     return partner[0].isOnline
+                    
                 }
             }
         },

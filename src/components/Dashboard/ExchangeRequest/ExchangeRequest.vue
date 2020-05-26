@@ -20,17 +20,14 @@ export default {
             // here we need to fetch the questions for each player
             // based on their level and targetlang
             //need to combine all the varius requests below but for now leave separate as things will change.
-
             //SAVE USER1 TALKPOINTS TO THE EXCHANGE OBJECT
             fb.db.ref(`/talkPoints/${this.exchangeRequest.user1.targetLang}/${this.exchangeRequest.user1.level}`).once('value').then( res => {
                 fb.db.ref(`/exchanges/${this.exchangeRequest.user2.uid}/user1`).update({ talkPoints: res.val()})
             })
-
             //SAVE USER2 TALKPOINTS TO THE EXCHANGE OBJECT
             fb.db.ref(`/talkPoints/${this.exchangeRequest.user2.targetLang}/${this.exchangeRequest.user2.level}`).once('value').then( res => {
                 fb.db.ref(`/exchanges/${this.exchangeRequest.user2.uid}/user2`).update({ talkPoints: res.val()})
             })
-
             //update the exchange to active
             fb.db.ref(`/exchanges/${this.exchangeRequest.user2.uid}`).update({ status: 'active', turnCount: 0, activeUser: "user1"})
 
