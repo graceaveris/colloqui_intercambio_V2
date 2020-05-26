@@ -1,24 +1,20 @@
-# vue-social
+**Colloqui V2 - Easy Spanish/English language exchange at any level**
 
-## Project setup
-```
-npm install
-```
+WIP
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Built with: Vue.js and Firebase.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Styled with: Sass.
 
-### Lints and fixes files
-```
-npm run lint
-```
+=> First milestones <=
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Users can sign up for an accountand select their level preference (beginner, intermediate, advanced).
+- Users can see friends online, and invite for an exchange (f2f or online in tandem with a video sevice)
+- Users take turns discussing topics in their target langugaes for 3min rounds. These include games (such as 20 questions), general discussion points, and current events.
+- Each user has a unique view within the game session. The user who is currently prasctising their target lagugae will recieve hints and vocab. If its a guessing game, one user will see an item on their screen, while the other player will ecieve clues to help them discover it.
+- Users can pause the languguage exchange, and skip questions.
+
+=> Future milestones <=
+
+- The progress of users is tracked, and completed topics saved so no user will get the same question twice.
+- User subject preferences can be defined to ensure the topics are interesting to both users.
